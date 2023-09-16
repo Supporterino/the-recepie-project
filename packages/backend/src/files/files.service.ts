@@ -11,7 +11,8 @@ export class FilesService {
     private readonly configService: ConfigService<AllConfigType>,
     @InjectRepository(FileEntity)
     private readonly fileRepository: Repository<FileEntity>,
-  ) {}
+  ) {
+  }
 
   async uploadFile(
     file: Express.Multer.File | Express.MulterS3.File,
@@ -39,7 +40,7 @@ export class FilesService {
       this.fileRepository.create({
         path: path[
           this.configService.getOrThrow('file.driver', { infer: true })
-        ],
+          ],
       }),
     );
   }

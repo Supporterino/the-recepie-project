@@ -1,7 +1,4 @@
-import {
-  ValidatorConstraint,
-  ValidatorConstraintInterface,
-} from 'class-validator';
+import { ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
 import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { ValidationArguments } from 'class-validator/types/validation/ValidationArguments';
@@ -13,7 +10,8 @@ export class IsExist implements ValidatorConstraintInterface {
   constructor(
     @InjectDataSource()
     private dataSource: DataSource,
-  ) {}
+  ) {
+  }
 
   async validate(value: string, validationArguments: ValidationArguments) {
     const repository = validationArguments.constraints[0];

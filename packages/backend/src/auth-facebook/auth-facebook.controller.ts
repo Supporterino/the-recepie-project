@@ -14,7 +14,8 @@ export class AuthFacebookController {
   constructor(
     private readonly authService: AuthService,
     private readonly authFacebookService: AuthFacebookService,
-  ) {}
+  ) {
+  }
 
   @Post('login')
   @HttpCode(HttpStatus.OK)

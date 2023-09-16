@@ -89,4 +89,5 @@ import { MailerModule } from './mailer/mailer.module';
     HomeModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+}

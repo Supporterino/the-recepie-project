@@ -1,6 +1,8 @@
 import {
-  Column,
   AfterLoad,
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
@@ -8,8 +10,6 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  BeforeInsert,
-  BeforeUpdate,
 } from 'typeorm';
 import { Role } from '../../roles/entities/role.entity';
 import { Status } from '../../statuses/entities/status.entity';
@@ -36,6 +36,41 @@ export class User extends EntityHelper {
 
   @Exclude({ toPlainOnly: true })
   public previousPassword: string;
+  @Column({ default: AuthProvidersEnum.email })
+  @Expose({ groups: ['me', 'admin'] })
+  provider: string;
+  @Index()
+  @Column({ type: String, nullable: true })
+  @Expose({ groups: ['me', 'admin'] })
+  socialId: string | null;
+  @Index()
+  @Column({ type: String, nullable: true })
+  firstName: string | null;
+  @Index()
+  @Column({ type: String, nullable: true })
+  lastName: string | null;
+  @ManyToOne(() => FileEntity, {
+    eager: true,
+  })
+  photo?: FileEntity | null;
+  @ManyToOne(() => Role, {
+    eager: true,
+  })
+  role?: Role | null;
+  @ManyToOne(() => Status, {
+    eager: true,
+  })
+  status?: Status;
+  @Column({ type: String, nullable: true })
+  @Index()
+  @Exclude({ toPlainOnly: true })
+  hash: string | null;
+  @CreateDateColumn()
+  createdAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @AfterLoad()
   public loadPreviousPassword(): void {
@@ -50,50 +85,4 @@ export class User extends EntityHelper {
       this.password = await bcrypt.hash(this.password, salt);
     }
   }
-
-  @Column({ default: AuthProvidersEnum.email })
-  @Expose({ groups: ['me', 'admin'] })
-  provider: string;
-
-  @Index()
-  @Column({ type: String, nullable: true })
-  @Expose({ groups: ['me', 'admin'] })
-  socialId: string | null;
-
-  @Index()
-  @Column({ type: String, nullable: true })
-  firstName: string | null;
-
-  @Index()
-  @Column({ type: String, nullable: true })
-  lastName: string | null;
-
-  @ManyToOne(() => FileEntity, {
-    eager: true,
-  })
-  photo?: FileEntity | null;
-
-  @ManyToOne(() => Role, {
-    eager: true,
-  })
-  role?: Role | null;
-
-  @ManyToOne(() => Status, {
-    eager: true,
-  })
-  status?: Status;
-
-  @Column({ type: String, nullable: true })
-  @Index()
-  @Exclude({ toPlainOnly: true })
-  hash: string | null;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 }

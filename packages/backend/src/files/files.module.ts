@@ -88,7 +88,7 @@ import { AllConfigType } from 'src/config/config.type';
           storage:
             storages[
               configService.getOrThrow('file.driver', { infer: true })
-            ](),
+              ](),
           limits: {
             fileSize: configService.get('file.maxFileSize', { infer: true }),
           },
@@ -99,4 +99,5 @@ import { AllConfigType } from 'src/config/config.type';
   controllers: [FilesController],
   providers: [ConfigModule, ConfigService, FilesService],
 })
-export class FilesModule {}
+export class FilesModule {
+}

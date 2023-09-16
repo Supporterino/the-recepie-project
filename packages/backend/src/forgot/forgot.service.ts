@@ -10,7 +10,8 @@ export class ForgotService {
   constructor(
     @InjectRepository(Forgot)
     private readonly forgotRepository: Repository<Forgot>,
-  ) {}
+  ) {
+  }
 
   async findOne(options: FindOptions<Forgot>): Promise<NullableType<Forgot>> {
     return this.forgotRepository.findOne({

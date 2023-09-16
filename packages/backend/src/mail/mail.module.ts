@@ -8,4 +8,5 @@ import { MailerModule } from 'src/mailer/mailer.module';
   providers: [MailService],
   exports: [MailService],
 })
-export class MailModule {}
+export class MailModule {
+}

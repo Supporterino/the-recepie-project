@@ -8,4 +8,5 @@ import { StatusSeedService } from './status-seed.service';
   providers: [StatusSeedService],
   exports: [StatusSeedService],
 })
-export class StatusSeedModule {}
+export class StatusSeedModule {
+}

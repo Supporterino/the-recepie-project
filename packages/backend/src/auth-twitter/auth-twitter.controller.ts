@@ -14,7 +14,8 @@ export class AuthTwitterController {
   constructor(
     private readonly authService: AuthService,
     private readonly authTwitterService: AuthTwitterService,
-  ) {}
+  ) {
+  }
 
   @Post('login')
   @HttpCode(HttpStatus.OK)

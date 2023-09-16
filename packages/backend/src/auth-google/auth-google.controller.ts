@@ -14,7 +14,8 @@ export class AuthGoogleController {
   constructor(
     private readonly authService: AuthService,
     private readonly authGoogleService: AuthGoogleService,
-  ) {}
+  ) {
+  }
 
   @Post('login')
   @HttpCode(HttpStatus.OK)

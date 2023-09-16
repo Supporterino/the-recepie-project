@@ -33,4 +33,5 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
   ],
   exports: [AuthService],
 })
-export class AuthModule {}
+export class AuthModule {
+}
