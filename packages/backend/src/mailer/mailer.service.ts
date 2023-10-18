@@ -24,10 +24,10 @@ export class MailerService {
   }
 
   async sendMail({
-                   templatePath,
-                   context,
-                   ...mailOptions
-                 }: nodemailer.SendMailOptions & {
+    templatePath,
+    context,
+    ...mailOptions
+  }: nodemailer.SendMailOptions & {
     templatePath: string;
     context: Record<string, unknown>;
   }): Promise<void> {
@@ -44,10 +44,10 @@ export class MailerService {
       from: mailOptions.from
         ? mailOptions.from
         : `"${this.configService.get('mail.defaultName', {
-          infer: true,
-        })}" <${this.configService.get('mail.defaultEmail', {
-          infer: true,
-        })}>`,
+            infer: true,
+          })}" <${this.configService.get('mail.defaultEmail', {
+            infer: true,
+          })}>`,
       html: mailOptions.html ? mailOptions.html : html,
     });
   }

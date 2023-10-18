@@ -9,8 +9,7 @@ export class StatusSeedService {
   constructor(
     @InjectRepository(Status)
     private repository: Repository<Status>,
-  ) {
-  }
+  ) {}
 
   async run() {
     const count = await this.repository.count();

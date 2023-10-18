@@ -1,11 +1,5 @@
 import request from 'supertest';
-import {
-  APP_URL,
-  TESTER_EMAIL,
-  TESTER_PASSWORD,
-  MAIL_HOST,
-  MAIL_PORT,
-} from '../utils/constants';
+import { APP_URL, TESTER_EMAIL, TESTER_PASSWORD, MAIL_HOST, MAIL_PORT } from '../utils/constants';
 
 describe('Auth user (e2e)', () => {
   const app = APP_URL;
@@ -32,10 +26,7 @@ describe('Auth user (e2e)', () => {
   });
 
   it('Login via admin endpoint: /api/v1/auth/admin/email/login (POST)', () => {
-    return request(app)
-      .post('/api/v1/auth/admin/email/login')
-      .send({ email: TESTER_EMAIL, password: TESTER_PASSWORD })
-      .expect(422);
+    return request(app).post('/api/v1/auth/admin/email/login').send({ email: TESTER_EMAIL, password: TESTER_PASSWORD }).expect(422);
   });
 
   it('Login via admin endpoint with extra spaced: /api/v1/auth/admin/email/login (POST)', () => {
@@ -88,12 +79,7 @@ describe('Auth user (e2e)', () => {
       .then(
         ({ body }) =>
           body
-            .find(
-              (letter) =>
-                letter.to[0].address.toLowerCase() ===
-                  newUserEmail.toLowerCase() &&
-                /.*confirm\-email\?hash\=(\w+).*/g.test(letter.text),
-            )
+            .find((letter) => letter.to[0].address.toLowerCase() === newUserEmail.toLowerCase() && /.*confirm\-email\?hash\=(\w+).*/g.test(letter.text))
             ?.text.replace(/.*confirm\-email\?hash\=(\w+).*/g, '$1'),
       );
 
@@ -111,12 +97,7 @@ describe('Auth user (e2e)', () => {
       .then(
         ({ body }) =>
           body
-            .find(
-              (letter) =>
-                letter.to[0].address.toLowerCase() ===
-                  newUserEmail.toLowerCase() &&
-                /.*confirm\-email\?hash\=(\w+).*/g.test(letter.text),
-            )
+            .find((letter) => letter.to[0].address.toLowerCase() === newUserEmail.toLowerCase() && /.*confirm\-email\?hash\=(\w+).*/g.test(letter.text))
             ?.text.replace(/.*confirm\-email\?hash\=(\w+).*/g, '$1'),
       );
 
@@ -237,9 +218,6 @@ describe('Auth user (e2e)', () => {
       type: 'bearer',
     });
 
-    return request(app)
-      .post('/api/v1/auth/email/login')
-      .send({ email: newUserEmail, password: newUserPassword })
-      .expect(422);
+    return request(app).post('/api/v1/auth/email/login').send({ email: newUserEmail, password: newUserPassword }).expect(422);
   });
 });

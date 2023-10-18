@@ -29,15 +29,7 @@ import { MailerModule } from './mailer/mailer.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [
-        databaseConfig,
-        authConfig,
-        appConfig,
-        mailConfig,
-        fileConfig,
-        googleConfig,
-        appleConfig,
-      ],
+      load: [databaseConfig, authConfig, appConfig, mailConfig, fileConfig, googleConfig, appleConfig],
       envFilePath: ['.env'],
     }),
     TypeOrmModule.forRootAsync({
@@ -81,5 +73,4 @@ import { MailerModule } from './mailer/mailer.module';
     HomeModule,
   ],
 })
-export class AppModule {
-}
+export class AppModule {}

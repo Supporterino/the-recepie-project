@@ -10,8 +10,7 @@ export class UserSeedService {
   constructor(
     @InjectRepository(User)
     private repository: Repository<User>,
-  ) {
-  }
+  ) {}
 
   async run() {
     const countAdmin = await this.repository.count({

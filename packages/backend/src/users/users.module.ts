@@ -12,5 +12,4 @@ import { IsNotExist } from 'src/utils/validators/is-not-exists.validator';
   providers: [IsExist, IsNotExist, UsersService],
   exports: [UsersService],
 })
-export class UsersModule {
-}
+export class UsersModule {}

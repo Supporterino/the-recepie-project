@@ -23,13 +23,7 @@ import { AllConfigType } from 'src/config/config.type';
             diskStorage({
               destination: './files',
               filename: (request, file, callback) => {
-                callback(
-                  null,
-                  `${randomStringGenerator()}.${file.originalname
-                    .split('.')
-                    .pop()
-                    ?.toLowerCase()}`,
-                );
+                callback(null, `${randomStringGenerator()}.${file.originalname.split('.').pop()?.toLowerCase()}`);
               },
             }),
           s3: () => {
@@ -39,10 +33,7 @@ import { AllConfigType } from 'src/config/config.type';
                 accessKeyId: configService.getOrThrow('file.accessKeyId', {
                   infer: true,
                 }),
-                secretAccessKey: configService.getOrThrow(
-                  'file.secretAccessKey',
-                  { infer: true },
-                ),
+                secretAccessKey: configService.getOrThrow('file.secretAccessKey', { infer: true }),
               },
             });
 
@@ -54,13 +45,7 @@ import { AllConfigType } from 'src/config/config.type';
               acl: 'public-read',
               contentType: multerS3.AUTO_CONTENT_TYPE,
               key: (request, file, callback) => {
-                callback(
-                  null,
-                  `${randomStringGenerator()}.${file.originalname
-                    .split('.')
-                    .pop()
-                    ?.toLowerCase()}`,
-                );
+                callback(null, `${randomStringGenerator()}.${file.originalname.split('.').pop()?.toLowerCase()}`);
               },
             });
           },
@@ -85,10 +70,7 @@ import { AllConfigType } from 'src/config/config.type';
 
             callback(null, true);
           },
-          storage:
-            storages[
-              configService.getOrThrow('file.driver', { infer: true })
-              ](),
+          storage: storages[configService.getOrThrow('file.driver', { infer: true })](),
           limits: {
             fileSize: configService.get('file.maxFileSize', { infer: true }),
           },
@@ -99,5 +81,4 @@ import { AllConfigType } from 'src/config/config.type';
   controllers: [FilesController],
   providers: [ConfigModule, ConfigService, FilesService],
 })
-export class FilesModule {
-}
+export class FilesModule {}

@@ -6,8 +6,8 @@ import { InjectDataSource } from '@nestjs/typeorm';
 
 type ValidationEntity =
   | {
-  id?: number | string;
-}
+      id?: number | string;
+    }
   | undefined;
 
 @Injectable()
@@ -16,8 +16,7 @@ export class IsNotExist implements ValidatorConstraintInterface {
   constructor(
     @InjectDataSource()
     private dataSource: DataSource,
-  ) {
-  }
+  ) {}
 
   async validate(value: string, validationArguments: ValidationArguments) {
     const repository = validationArguments.constraints[0] as string;

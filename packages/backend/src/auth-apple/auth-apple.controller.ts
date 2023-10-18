@@ -14,8 +14,7 @@ export class AuthAppleController {
   constructor(
     private readonly authService: AuthService,
     private readonly authAppleService: AuthAppleService,
-  ) {
-  }
+  ) {}
 
   @Post('login')
   @HttpCode(HttpStatus.OK)

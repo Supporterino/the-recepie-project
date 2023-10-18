@@ -8,5 +8,4 @@ import { RoleSeedService } from './role-seed.service';
   providers: [RoleSeedService],
   exports: [RoleSeedService],
 })
-export class RoleSeedModule {
-}
+export class RoleSeedModule {}

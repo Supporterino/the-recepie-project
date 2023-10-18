@@ -1,19 +1,4 @@
-import {
-  Body,
-  Controller,
-  DefaultValuePipe,
-  Delete,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-  Query,
-  SerializeOptions,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Query, SerializeOptions, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -36,8 +21,7 @@ import { NullableType } from '../utils/types/nullable.type';
   version: '1',
 })
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {
-  }
+  constructor(private readonly usersService: UsersService) {}
 
   @SerializeOptions({
     groups: ['admin'],
@@ -84,10 +68,7 @@ export class UsersController {
   })
   @Patch(':id')
   @HttpCode(HttpStatus.OK)
-  update(
-    @Param('id') id: number,
-    @Body() updateProfileDto: UpdateUserDto,
-  ): Promise<User> {
+  update(@Param('id') id: number, @Body() updateProfileDto: UpdateUserDto): Promise<User> {
     return this.usersService.update(id, updateProfileDto);
   }
 
